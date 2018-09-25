@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidouinc.ydl.workflow.mapper.ActBranchCcMapper" >
+  <resultMap id="BaseResultMap" type="com.yidouinc.ydl.workflow.domain.ActBranchCc" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="act_branch_id" property="actBranchId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="module_type" property="moduleType" jdbcType="VARCHAR" />
+    <result column="proc_def_key" property="procDefKey" jdbcType="VARCHAR" />
+    <result column="person_id" property="personId" jdbcType="BIGINT" />
+    <result column="creator_id" property="creatorId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, act_branch_id, company_id, module_type, proc_def_key, person_id, creator_id, 
+    create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yidouinc.ydl.workflow.domain.ActBranchCcExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from act_branch_cc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from act_branch_cc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from act_branch_cc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yidouinc.ydl.workflow.domain.ActBranchCcExample" >
+    delete from act_branch_cc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yidouinc.ydl.workflow.domain.ActBranchCc" >
+    insert into act_branch_cc (id, act_branch_id, company_id, 
+      module_type, proc_def_key, person_id, 
+      creator_id, create_time)
+    values (#{id,jdbcType=BIGINT}, #{actBranchId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, 
+      #{moduleType,jdbcType=VARCHAR}, #{procDefKey,jdbcType=VARCHAR}, #{personId,jdbcType=BIGINT}, 
+      #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.yidouinc.ydl.workflow.domain.ActBranchCc" >
+    insert into act_branch_cc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="actBranchId != null" >
+        act_branch_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="moduleType != null" >
+        module_type,
+      </if>
+      <if test="procDefKey != null" >
+        proc_def_key,
+      </if>
+      <if test="personId != null" >
+        person_id,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="actBranchId != null" >
+        #{actBranchId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="moduleType != null" >
+        #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="procDefKey != null" >
+        #{procDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yidouinc.ydl.workflow.domain.ActBranchCcExample" resultType="java.lang.Integer" >
+    select count(*) from act_branch_cc
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update act_branch_cc
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.actBranchId != null" >
+        act_branch_id = #{record.actBranchId,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.moduleType != null" >
+        module_type = #{record.moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.procDefKey != null" >
+        proc_def_key = #{record.procDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personId != null" >
+        person_id = #{record.personId,jdbcType=BIGINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update act_branch_cc
+    set id = #{record.id,jdbcType=BIGINT},
+      act_branch_id = #{record.actBranchId,jdbcType=BIGINT},
+      company_id = #{record.companyId,jdbcType=BIGINT},
+      module_type = #{record.moduleType,jdbcType=VARCHAR},
+      proc_def_key = #{record.procDefKey,jdbcType=VARCHAR},
+      person_id = #{record.personId,jdbcType=BIGINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yidouinc.ydl.workflow.domain.ActBranchCc" >
+    update act_branch_cc
+    <set >
+      <if test="actBranchId != null" >
+        act_branch_id = #{actBranchId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="moduleType != null" >
+        module_type = #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="procDefKey != null" >
+        proc_def_key = #{procDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        person_id = #{personId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yidouinc.ydl.workflow.domain.ActBranchCc" >
+    update act_branch_cc
+    set act_branch_id = #{actBranchId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT},
+      module_type = #{moduleType,jdbcType=VARCHAR},
+      proc_def_key = #{procDefKey,jdbcType=VARCHAR},
+      person_id = #{personId,jdbcType=BIGINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 手写sql -->
+   <select id="selectCcPersonIdsByProcDefKey" parameterType="map" resultType="java.lang.Long">
+ 	 SELECT person_id FROM act_branch_cc WHERE company_id= #{companyId,jdbcType=BIGINT}
+ 	 	and proc_def_key = #{procDefKey,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByBranchId" parameterType="map" >
+    delete from act_branch_cc
+    where company_id= #{companyId,jdbcType=BIGINT}
+    and act_branch_id = #{branchId,jdbcType=VARCHAR}
+  </delete>
+  
+  <select id="queryBranchCcList" resultType="java.lang.Long" parameterType="map" >
+     select person_id
+     from act_branch_cc where  
+    	company_id = #{companyId,jdbcType=BIGINT} 
+    	and proc_def_key = #{procDefKey,jdbcType=VARCHAR}
+    	and module_type = #{moduleType,jdbcType=VARCHAR}
+  </select>
+</mapper>

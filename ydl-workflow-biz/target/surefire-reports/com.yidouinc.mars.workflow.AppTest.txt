@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.yidouinc.mars.workflow.AppTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec - in com.yidouinc.mars.workflow.AppTest

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidouinc.ydl.workflow.mapper.ActAuditBranchMapper" >
+  <resultMap id="BaseResultMap" type="com.yidouinc.ydl.workflow.domain.ActAuditBranch" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="act_config_id" property="actConfigId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="module_type" property="moduleType" jdbcType="VARCHAR" />
+    <result column="proc_def_key" property="procDefKey" jdbcType="VARCHAR" />
+    <result column="pre_condition" property="preCondition" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="creator_id" property="creatorId" jdbcType="BIGINT" />
+    <result column="updator_id" property="updatorId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, act_config_id, company_id, module_type, proc_def_key, pre_condition, status, 
+    creator_id, updator_id, create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yidouinc.ydl.workflow.domain.ActAuditBranchExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from act_audit_branch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from act_audit_branch
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from act_audit_branch
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yidouinc.ydl.workflow.domain.ActAuditBranchExample" >
+    delete from act_audit_branch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yidouinc.ydl.workflow.domain.ActAuditBranch" >
+    insert into act_audit_branch (id, name, act_config_id, 
+      company_id, module_type, proc_def_key, 
+      pre_condition, status, creator_id, 
+      updator_id, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{actConfigId,jdbcType=BIGINT}, 
+      #{companyId,jdbcType=BIGINT}, #{moduleType,jdbcType=VARCHAR}, #{procDefKey,jdbcType=VARCHAR}, 
+      #{preCondition,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, 
+      #{updatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.yidouinc.ydl.workflow.domain.ActAuditBranch" >
+    insert into act_audit_branch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="actConfigId != null" >
+        act_config_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="moduleType != null" >
+        module_type,
+      </if>
+      <if test="procDefKey != null" >
+        proc_def_key,
+      </if>
+      <if test="preCondition != null" >
+        pre_condition,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="updatorId != null" >
+        updator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="actConfigId != null" >
+        #{actConfigId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="moduleType != null" >
+        #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="procDefKey != null" >
+        #{procDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="preCondition != null" >
+        #{preCondition,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updatorId != null" >
+        #{updatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yidouinc.ydl.workflow.domain.ActAuditBranchExample" resultType="java.lang.Integer" >
+    select count(*) from act_audit_branch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update act_audit_branch
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actConfigId != null" >
+        act_config_id = #{record.actConfigId,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.moduleType != null" >
+        module_type = #{record.moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.procDefKey != null" >
+        proc_def_key = #{record.procDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preCondition != null" >
+        pre_condition = #{record.preCondition,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updatorId != null" >
+        updator_id = #{record.updatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update act_audit_branch
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      act_config_id = #{record.actConfigId,jdbcType=BIGINT},
+      company_id = #{record.companyId,jdbcType=BIGINT},
+      module_type = #{record.moduleType,jdbcType=VARCHAR},
+      proc_def_key = #{record.procDefKey,jdbcType=VARCHAR},
+      pre_condition = #{record.preCondition,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      updator_id = #{record.updatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yidouinc.ydl.workflow.domain.ActAuditBranch" >
+    update act_audit_branch
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="actConfigId != null" >
+        act_config_id = #{actConfigId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="moduleType != null" >
+        module_type = #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="procDefKey != null" >
+        proc_def_key = #{procDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="preCondition != null" >
+        pre_condition = #{preCondition,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updatorId != null" >
+        updator_id = #{updatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yidouinc.ydl.workflow.domain.ActAuditBranch" >
+    update act_audit_branch
+    set name = #{name,jdbcType=VARCHAR},
+      act_config_id = #{actConfigId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT},
+      module_type = #{moduleType,jdbcType=VARCHAR},
+      proc_def_key = #{procDefKey,jdbcType=VARCHAR},
+      pre_condition = #{preCondition,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      updator_id = #{updatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

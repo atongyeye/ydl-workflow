@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidouinc.ydl.workflow.mapper.ActOperatingMapper" >
+  <resultMap id="BaseResultMap" type="com.yidouinc.ydl.workflow.domain.ActOperating" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="operating_form_id" property="operatingFormId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="operating_time" property="operatingTime" jdbcType="TIMESTAMP" />
+    <result column="proc_inst_id" property="procInstId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, operating_form_id, company_id, operator_id, operating_time, proc_inst_id, type, 
+    content, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yidouinc.ydl.workflow.domain.ActOperatingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from act_operating
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from act_operating
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from act_operating
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yidouinc.ydl.workflow.domain.ActOperatingExample" >
+    delete from act_operating
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yidouinc.ydl.workflow.domain.ActOperating" >
+    insert into act_operating (id, operating_form_id, company_id, 
+      operator_id, operating_time, proc_inst_id, 
+      type, content, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{operatingFormId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, 
+      #{operatorId,jdbcType=BIGINT}, #{operatingTime,jdbcType=TIMESTAMP}, #{procInstId,jdbcType=VARCHAR}, 
+      #{type,jdbcType=TINYINT}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.yidouinc.ydl.workflow.domain.ActOperating" >
+    insert into act_operating
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="operatingFormId != null" >
+        operating_form_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="operatingTime != null" >
+        operating_time,
+      </if>
+      <if test="procInstId != null" >
+        proc_inst_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="operatingFormId != null" >
+        #{operatingFormId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatingTime != null" >
+        #{operatingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procInstId != null" >
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yidouinc.ydl.workflow.domain.ActOperatingExample" resultType="java.lang.Integer" >
+    select count(*) from act_operating
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update act_operating
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.operatingFormId != null" >
+        operating_form_id = #{record.operatingFormId,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operatingTime != null" >
+        operating_time = #{record.operatingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.procInstId != null" >
+        proc_inst_id = #{record.procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update act_operating
+    set id = #{record.id,jdbcType=BIGINT},
+      operating_form_id = #{record.operatingFormId,jdbcType=BIGINT},
+      company_id = #{record.companyId,jdbcType=BIGINT},
+      operator_id = #{record.operatorId,jdbcType=BIGINT},
+      operating_time = #{record.operatingTime,jdbcType=TIMESTAMP},
+      proc_inst_id = #{record.procInstId,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=TINYINT},
+      content = #{record.content,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yidouinc.ydl.workflow.domain.ActOperating" >
+    update act_operating
+    <set >
+      <if test="operatingFormId != null" >
+        operating_form_id = #{operatingFormId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatingTime != null" >
+        operating_time = #{operatingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procInstId != null" >
+        proc_inst_id = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yidouinc.ydl.workflow.domain.ActOperating" >
+    update act_operating
+    set operating_form_id = #{operatingFormId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operating_time = #{operatingTime,jdbcType=TIMESTAMP},
+      proc_inst_id = #{procInstId,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <select id="selectOperatorIdsByProcInstId" parameterType="map" resultType="java.lang.Long">
+ 	 SELECT operator_id FROM act_operating WHERE company_id= #{companyId,jdbcType=BIGINT}
+ 	 	and proc_inst_id= #{procInstId,jdbcType=VARCHAR}
+ 	 	and operating_form_id= #{operatingFormId,jdbcType=BIGINT}
+  </select>
+  <select id="selectLastOperatingByProcInstId" parameterType="map" resultMap="BaseResultMap">
+ 	 SELECT id, operating_form_id, company_id, 
+      operator_id, operating_time, proc_inst_id, 
+      type, content, create_time
+     FROM act_operating WHERE company_id= #{companyId,jdbcType=BIGINT}
+ 	 	and proc_inst_id= #{procInstId,jdbcType=VARCHAR}
+ 	 	and operating_form_id= #{operatingFormId,jdbcType=BIGINT}
+ 	 	and type not in (6)
+ 	 	order by id desc limit 0,1
+  </select>
+</mapper>

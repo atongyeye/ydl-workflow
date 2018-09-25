@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: ydl-workflow-biz
+Implementation-Version: 1.0.0-SNAPSHOT
+Implementation-Vendor-Id: com.yidouinc.ydl
+Build-Jdk: 1.7.0_80
+Built-By: lujianhao
+Created-By: Maven Integration for Eclipse
+

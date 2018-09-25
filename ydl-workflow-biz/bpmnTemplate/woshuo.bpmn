@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="contractProcess6-100198" name="woshuo" isExecutable="true">
+    <startEvent id="start10000" name="startEvent" activiti:initiator="applyUserId"/>
+    <endEvent id="end10001" name="endEvent"/>
+    <userTask id="task0" name="金明" activiti:assignee="119"/>
+    <userTask id="task1" name="王帅" activiti:assignee="122"/>
+    <userTask id="task2" name="陆飞洋" activiti:assignee="133"/>
+    <userTask id="task3" name="温菲" activiti:assignee="121"/>
+    <userTask id="task4" name="陆剑浩" activiti:assignee="130"/>
+    <sequenceFlow id="flow1" name="flow1" sourceRef="task0" targetRef="task1"/>
+    <sequenceFlow id="flow2" name="flow2" sourceRef="task1" targetRef="task2"/>
+    <sequenceFlow id="flow3" name="flow3" sourceRef="task2" targetRef="task3"/>
+    <sequenceFlow id="flow4" name="flow4" sourceRef="task3" targetRef="task4"/>
+    <sequenceFlow id="flow5" name="flow5" sourceRef="task4" targetRef="end10001"/>
+    <sequenceFlow id="flow0" name="flow0" sourceRef="start10000" targetRef="task0"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_contractProcess6-100198">
+    <bpmndi:BPMNPlane bpmnElement="contractProcess6-100198" id="BPMNPlane_contractProcess6-100198"/>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="contractProcess1-100198" name="woshuo12333123" isExecutable="true">
+    <startEvent id="start10000" name="startEvent" activiti:initiator="applyUserId"/>
+    <endEvent id="end10001" name="endEvent"/>
+    <userTask id="task0" name="王帅" activiti:assignee="122"/>
+    <sequenceFlow id="flow1" name="flow1" sourceRef="task0" targetRef="end10001"/>
+    <sequenceFlow id="flow0" name="flow0" sourceRef="start10000" targetRef="task0"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_contractProcess1-100198">
+    <bpmndi:BPMNPlane bpmnElement="contractProcess1-100198" id="BPMNPlane_contractProcess1-100198"/>
+  </bpmndi:BPMNDiagram>
+</definitions>
