@@ -12,7 +12,7 @@
 	```
 	post
 	```
-- 请求参数
+- 请求参数 
 
 	```
 	expressCompany：String,快递公司
@@ -313,27 +313,31 @@
 
 	```
 	/api/mobile/sendermail/querySenderMailByWaybillNumber
-	
+	```
 - 请求方式
 
+	```
 	get
-	
+	```
 - 请求参数
 
+	```
 	waybillNumber：String,运单号
-	
+	```
 - 返回值
 
+	```
 	{
 		data:Object,返回数据,
 		code:String,状态码,
 		msg:String,提示信息
 	}
-	
+	```
 ###  11 根据寄件id查询寄件
 
 - 地址
-
+	
+	```
 	/api/mobile/sendermail/querySenderMailById
 	```
 - 请求方式
