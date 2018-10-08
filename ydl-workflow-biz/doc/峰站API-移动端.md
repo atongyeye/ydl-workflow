@@ -79,32 +79,6 @@
 		msg:String,提示信息
 	}
 	
-###  3 问题件处理(退回快递公司)
-
-- 地址
-
-	/api/mobile/stock/backStorck
-	
-- 请求方式
-
-	post
-	
-- 请求参数
-
-	id：long,主键
-	waybillNumber：String,运单号
-	waybillNumbers: String[],关联运单号数组
-	customerPhone: String,客户手机号
-	status:int,包裹状态(3已退件)
-	
-- 返回值
-
-	{
-		data:Object,返回数据,
-		code:String,状态码,
-		msg:String,提示信息
-	}
-	
 ###  4 更新库单信息
 
 - 地址
@@ -112,7 +86,7 @@
 	/api/mobile/stock/updateStorck
 	
 - 请求方式
-
+ 
 	post
 	
 - 请求参数
@@ -212,10 +186,16 @@
 	
 - 请求参数
 
-	customerPhone：String,客户手机号
+  ```json
+  customerPhone：String,客户手机号,
+  page: 分页参数。从 0 开始,
+  count: 每次请求个数。上限 100 条一次请求
+  ```
+	
 	
 - 返回值
 
+	```
 	data:[{
 		id:long,主键,
 		customerPhone:String,客户手机号,
@@ -228,8 +208,9 @@
 		status:int,包裹状态(0:已录入，1:已入库，2:已出库，3:已退件),
 		salesmanId:long,业务员id,
 		pickNumber:String,取件码
-	}]
-	
+	}],
+   count: int, 记录总数
+   ```
 ###  9 寄件管理
 
 - 地址
